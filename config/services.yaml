@@ -22,4 +22,11 @@ services:
             - '../src/Kernel.php'
             - '../src/Asset/Asset.php' # plain data, not a service
 
-    App\Embedding\Embedder: '@OpenAiCompatibleEmbedderInterface'
+    App\Embedding\EmbedderInterface: '@App\Embedding\OpenAiCompatibleEmbedder'
+
+    # the client is built through a builder, so it cannot be autowired from its class
+    Elastic\Elasticsearch\Client:
+        factory: ['Elastic\Elasticsearch\ClientBuilder', 'fromConfig']
+        arguments:
+            -
+                hosts: ['%env(ELASTICSEARCH_URL)%']
