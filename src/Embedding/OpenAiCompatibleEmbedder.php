@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Embedding;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface as HttpClientException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -35,6 +36,9 @@ final class OpenAiCompatibleEmbedder implements EmbedderInterface
                 ],
                 'timeout' => self::TIMEOUT_SECONDS,
             ])->toArray();
+        } catch (DecodingExceptionInterface) {
+            // the server answered, it just did not answer with JSON
+            throw EmbeddingFailedException::unexpectedResponse($this->model, 'the response body is not JSON');
         } catch (HttpClientException $e) {
             throw EmbeddingFailedException::unreachable($this->endpoint, $this->model, $e);
         }
