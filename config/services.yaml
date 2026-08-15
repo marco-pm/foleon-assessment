@@ -20,3 +20,6 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
+            - '../src/Asset/Asset.php' # plain data, not a service
+
+    App\Embedding\Embedder: '@OpenAiCompatibleEmbedderInterface'
