@@ -1,0 +1,51 @@
+name: foleon-assessment
+
+services:
+    app:
+        build:
+            dockerfile: docker/php/Dockerfile
+            context: .
+            args:
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
+        environment:
+            SERVER_NAME: ':80'
+        ports:
+            - '8000:80'
+        volumes:
+            - .:/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        depends_on:
+            elasticsearch:
+                condition: service_healthy
+            ollama:
+                condition: service_started
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:9.5.1
+        environment:
+            discovery.type: single-node
+            xpack.security.enabled: 'false'
+            xpack.license.self_generated.type: basic
+            ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+        ports:
+            - '9200:9200'
+        volumes:
+            - elasticsearch-data:/usr/share/elasticsearch/data
+        healthcheck:
+            test: ['CMD-SHELL', 'curl -fsS "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=5s" > /dev/null']
+            interval: 10s
+            timeout: 10s
+            retries: 12
+            start_period: 30s
+
+    ollama:
+        image: ollama/ollama:0.32.13
+        # deliberately not published to the host: an Ollama already running there would clash on 11434
+        volumes:
+            - ollama-models:/root/.ollama
+
+volumes:
+    elasticsearch-data:
+    ollama-models:
