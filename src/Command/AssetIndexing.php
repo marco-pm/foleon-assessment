@@ -75,6 +75,29 @@ final class AssetIndexing
         return Command::SUCCESS;
     }
 
+    #[AsCommand('app:index:delete', 'remove a single asset from the index')]
+    public function delete(
+        SymfonyStyle $io,
+        #[Argument('id of the asset to remove')]
+        string $id,
+    ): int {
+        try {
+            $wasIndexed = $this->index->delete($id);
+        } catch (ElasticsearchException|TransportException $e) {
+            return $this->reportUnreachable($io, $e);
+        }
+
+        if (!$wasIndexed) {
+            $io->warning(sprintf('"%s" was not in "%s", so there was nothing to remove.', $id, $this->index->name()));
+
+            return Command::SUCCESS;
+        }
+
+        $io->success(sprintf('"%s" is no longer in "%s".', $id, $this->index->name()));
+
+        return Command::SUCCESS;
+    }
+
     private function reportUnreachable(SymfonyStyle $io, Throwable $e): int
     {
         $io->error($e->getMessage());

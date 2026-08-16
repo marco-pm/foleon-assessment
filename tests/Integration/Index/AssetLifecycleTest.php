@@ -25,4 +25,20 @@ final class AssetLifecycleTest extends IndexTestCase
             self::assertStringNotContainsString('pasta', $hit->description);
         }
     }
+
+    public function testADeletedAssetStopsBeingSearchable(): void
+    {
+        $this->indexer->index(new Asset('ast_1', 'notes', 'The annual fire safety inspection report'));
+
+        self::assertCount(1, $this->search->search('fire safety inspection'), 'the asset has to be there before it can be removed');
+
+        self::assertTrue($this->index->delete('ast_1'), 'the asset was in the index, so the delete removed something');
+
+        self::assertSame([], $this->search->search('fire safety inspection'));
+    }
+
+    public function testDeletingAnAssetThatWasNeverIndexedIsNotAFailure(): void
+    {
+        self::assertFalse($this->index->delete('ast_never_seen'));
+    }
 }

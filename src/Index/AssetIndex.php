@@ -6,12 +6,14 @@ namespace App\Index;
 
 use App\Asset\Asset;
 use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class AssetIndex
 {
     private const string VECTOR_FIELD = 'embedding';
     private const int CANDIDATES_PER_HIT = 10;
+    private const int NOT_FOUND = 404;
 
     public function __construct(
         private readonly Client $client,
@@ -73,6 +75,30 @@ final class AssetIndex
                 self::VECTOR_FIELD => $vector,
             ],
         ]);
+    }
+
+    /**
+     *
+     * @return bool whether the asset was there to begin with
+     */
+    public function delete(string $id): bool
+    {
+        try {
+            $this->client->delete([
+                'index' => $this->name,
+                'id' => $id,
+                'refresh' => 'wait_for',
+            ]);
+        } catch (ClientResponseException $e) {
+            // both an unknown id and a missing index answer 404
+            if (self::NOT_FOUND === $e->getCode()) {
+                return false;
+            }
+
+            throw $e;
+        }
+
+        return true;
     }
 
     public function refresh(): void
