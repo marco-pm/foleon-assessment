@@ -10,6 +10,9 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class AssetIndex
 {
+    private const string VECTOR_FIELD = 'embedding';
+    private const int CANDIDATES_PER_HIT = 10;
+
     public function __construct(
         private readonly Client $client,
         #[Autowire('%env(ELASTICSEARCH_INDEX)%')]
@@ -58,18 +61,55 @@ final class AssetIndex
     /**
      * @param list<float> $vector
      */
-    public function save(Asset $asset, array $vector): void
+    public function save(Asset $asset, array $vector, bool $waitForRefresh = true): void
     {
         $this->client->index([
             'index' => $this->name,
             'id' => $asset->id,
-            'refresh' => 'wait_for', // make sure the asset is immediately searchable
+            'refresh' => $waitForRefresh ? 'wait_for' : 'false',
             'body' => [
                 'name' => $asset->name,
                 'description' => $asset->description,
-                'embedding' => $vector,
+                self::VECTOR_FIELD => $vector,
             ],
         ]);
+    }
+
+    public function refresh(): void
+    {
+        $this->client->indices()->refresh(['index' => $this->name]);
+    }
+
+    /**
+     * @param list<float> $vector
+     *
+     * @return list<SearchHit>
+     */
+    public function search(array $vector, int $size): array
+    {
+        $response = $this->client->search([
+            'index' => $this->name,
+            'body' => [
+                'knn' => [
+                    'field' => self::VECTOR_FIELD,
+                    'query_vector' => $vector,
+                    'k' => $size,
+                    'num_candidates' => $size * self::CANDIDATES_PER_HIT,
+                ],
+                'size' => $size,
+                '_source' => ['name', 'description'],
+            ],
+        ])->asArray();
+
+        return array_values(array_map(
+            static fn (array $hit): SearchHit => new SearchHit(
+                $hit['_id'],
+                $hit['_source']['name'],
+                $hit['_source']['description'],
+                (float) $hit['_score'],
+            ),
+            $response['hits']['hits'],
+        ));
     }
 
     /**
@@ -87,7 +127,7 @@ final class AssetIndex
                         ],
                     ],
                     'description' => ['type' => 'text'],
-                    'embedding' => [
+                    self::VECTOR_FIELD => [
                         'type' => 'dense_vector',
                         'dims' => $this->dimensions,
                         'index' => true,

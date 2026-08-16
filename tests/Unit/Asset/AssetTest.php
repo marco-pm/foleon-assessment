@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Asset;
+namespace App\Tests\Unit\Asset;
 
 use App\Asset\Asset;
 use InvalidArgumentException;

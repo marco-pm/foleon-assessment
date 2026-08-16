@@ -30,47 +30,33 @@ final class AssetIndexing
     ) {
     }
 
-    #[AsCommand('app:index:create', 'create the Elasticsearch index with its mapping')]
-    public function create(
+    #[AsCommand('app:index:load', 'create the index if needed and load the sample assets into it')]
+    public function load(
         SymfonyStyle $io,
+        #[Argument('id of a single asset to load, defaults to the whole sample file')]
+        ?string $id = null,
         #[Option('drop the index first, discarding everything in it')]
         bool $recreate = false,
     ): int {
+        try {
+            $assets = null === $id ? $this->assets->all() : [$this->assets->find($id)];
+        } catch (RuntimeException $e) {
+            $io->error($e->getMessage());
+            return Command::FAILURE;
+        }
+
+        if ([] === $assets) {
+            $io->warning('The sample file holds no assets, so there is nothing to load.');
+            return Command::FAILURE;
+        }
+
         try {
             if ($recreate) {
                 $this->index->drop();
             }
 
-            $created = $this->index->createIfMissing();
-        } catch (ElasticsearchException|TransportException $e) {
-            return $this->reportUnreachable($io, $e);
-        }
-
-        if (!$created) {
-            $io->note(sprintf('Index "%s" already exists, nothing to do. Use --recreate to rebuild it.', $this->index->name()));
-
-            return Command::SUCCESS;
-        }
-
-        $io->success(sprintf('Index "%s" created.', $this->index->name()));
-
-        return Command::SUCCESS;
-    }
-
-    /**
-     * @throws RuntimeException when the sample file is unreadable or holds no such asset
-     */
-    #[AsCommand('app:index:asset', 'embed one asset from the sample file and put it in the index')]
-    public function indexAsset(
-        SymfonyStyle $io,
-        #[Argument('id of the asset to index, defaults to the first one in the sample file')]
-        ?string $id = null,
-    ): int {
-        $asset = null === $id ? $this->assets->first() : $this->assets->find($id);
-
-        try {
             $this->index->createIfMissing();
-            $this->indexer->index($asset);
+            $this->indexer->indexAll($io->progressIterate($assets));
         } catch (EmbeddingFailedException $e) {
             $io->error($e->getMessage());
 
@@ -79,7 +65,12 @@ final class AssetIndexing
             return $this->reportUnreachable($io, $e);
         }
 
-        $io->success(sprintf('Asset "%s" is indexed in "%s" and searchable.', $asset->id, $this->index->name()));
+        $io->success(sprintf(
+            '%d asset%s indexed in "%s" and searchable.',
+            count($assets),
+            1 === count($assets) ? '' : 's',
+            $this->index->name(),
+        ));
 
         return Command::SUCCESS;
     }

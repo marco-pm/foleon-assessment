@@ -26,4 +26,18 @@ final class AssetIndexer
     {
         $this->index->save($asset, $this->embedder->embed($asset->description));
     }
+
+    /**
+     * @param iterable<Asset> $assets
+     *
+     * @throws EmbeddingFailedException
+     */
+    public function indexAll(iterable $assets): void
+    {
+        foreach ($assets as $asset) {
+            $this->index->save($asset, $this->embedder->embed($asset->description), waitForRefresh: false);
+        }
+
+        $this->index->refresh();
+    }
 }

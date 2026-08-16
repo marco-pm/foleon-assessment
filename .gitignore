@@ -8,7 +8,9 @@
 /public/bundles/
 /var/
 /vendor/
+/config/reference.php
 ###< symfony/framework-bundle ###
+
 /docker-compose.override.yaml
 
 ###> phpunit/phpunit ###

@@ -63,14 +63,6 @@ final class JsonAssetFile
         throw new RuntimeException(sprintf('No asset with id "%s" in "%s".', $id, $this->path));
     }
 
-    /**
-     * @throws RuntimeException when the file holds no assets at all
-     */
-    public function first(): Asset
-    {
-        return $this->all()[0] ?? throw new RuntimeException(sprintf('The asset file at "%s" is empty.', $this->path));
-    }
-
     private function toAsset(int|string $position, mixed $row): Asset
     {
         if (!is_array($row)) {

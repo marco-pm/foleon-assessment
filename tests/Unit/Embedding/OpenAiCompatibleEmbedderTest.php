@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Embedding;
+namespace App\Tests\Unit\Embedding;
 
 use App\Embedding\EmbeddingFailedException;
 use App\Embedding\OpenAiCompatibleEmbedder;
