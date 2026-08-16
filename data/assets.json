@@ -3,5 +3,500 @@
         "id": "ast_8831",
         "name": "Q3_deck_FINAL_v2",
         "description": "A quarterly business review deck: revenue against target by region, a churn breakdown for enterprise accounts, and a closing slide of hiring plans for the next two quarters."
+    },
+    {
+        "id": "ast_1042",
+        "name": "Q1_revenue_breakdown.xlsx",
+        "description": "Revenue for the first quarter split by product line and region, with variance against forecast."
+    },
+    {
+        "id": "ast_1043",
+        "name": "Q2_revenue_breakdown.xlsx",
+        "description": "Revenue for the second quarter split by product line and region, with variance against forecast."
+    },
+    {
+        "id": "ast_1044",
+        "name": "Q3_revenue_breakdown.xlsx",
+        "description": "Revenue for the third quarter split by product line and region, with variance against forecast."
+    },
+    {
+        "id": "ast_1045",
+        "name": "Q4_revenue_breakdown.xlsx",
+        "description": "Revenue for the fourth quarter split by product line and region, with variance against forecast and a full year roll up."
+    },
+    {
+        "id": "ast_1067",
+        "name": "arr_bridge_fy24.pdf",
+        "description": "Annual recurring revenue bridge for the financial year. New business, upsell, contraction and churned accounts are reconciled to the closing balance."
+    },
+    {
+        "id": "ast_1071",
+        "name": "Untitled_3.pptx",
+        "description": "Board slides on cash runway, showing how many months of operating cost the current balance covers at the present burn rate."
+    },
+    {
+        "id": "ast_1088",
+        "name": "budget_v7_FINAL_final.xlsx",
+        "description": "Departmental budget for next year, with staff cost per team and a contingency line for unplanned recruitment."
+    },
+    {
+        "id": "ast_1093",
+        "name": "scan0012.pdf",
+        "description": "Signed audit letter from the external accountants confirming the statutory accounts."
+    },
+    {
+        "id": "ast_1101",
+        "name": "cac_payback_analysis.pdf",
+        "description": "Customer acquisition cost payback by channel. It shows how many months of gross margin it takes to recover the cost of winning an account, and which channels never pay back at all."
+    },
+    {
+        "id": "ast_1110",
+        "name": "invoice_aging_report.csv",
+        "description": "Aged debtor report by customer and days overdue."
+    },
+    {
+        "id": "ast_1122",
+        "name": "fx_exposure_memo.docx",
+        "description": "Memo on currency exposure for contracts billed in dollars while costs are incurred in euros."
+    },
+    {
+        "id": "ast_1134",
+        "name": "IMG_2210.jpg",
+        "description": "Photograph of the finance team whiteboard after the annual planning session, listing the agreed cost targets per department."
+    },
+    {
+        "id": "ast_1141",
+        "name": "gross_margin_by_product.xlsx",
+        "description": "Gross margin per product line after hosting and support costs are allocated."
+    },
+    {
+        "id": "ast_1150",
+        "name": "procurement_savings.pptx",
+        "description": "Slides on savings achieved by renegotiating supplier contracts across cloud, travel and office services."
+    },
+    {
+        "id": "ast_1163",
+        "name": "monthly_close_checklist.docx",
+        "description": "Checklist the finance team works through to close the books each month, from accruals to bank reconciliation."
+    },
+    {
+        "id": "ast_1177",
+        "name": "pricing_committee_minutes.docx",
+        "description": "Minutes of the pricing committee. Proposed list price changes were discussed alongside discount approval thresholds. The committee agreed to model the effect on average deal size before deciding."
+    },
+    {
+        "id": "ast_1188",
+        "name": "capex_request_datacentre.pdf",
+        "description": "Capital expenditure request for replacing ageing server hardware in the Amsterdam facility, with a three year depreciation schedule."
+    },
+    {
+        "id": "ast_1194",
+        "name": "deck_refinishing_quote.pdf",
+        "description": "Quote from a contractor for sanding and refinishing the wooden roof terrace deck at the Amsterdam office."
+    },
+    {
+        "id": "ast_1199",
+        "name": "tax_ruling_correspondence.pdf",
+        "description": "Correspondence with the tax authority about the treatment of software development costs."
+    },
+    {
+        "id": "ast_2001",
+        "name": "talent_acquisition_plan.docx",
+        "description": "Quarterly talent acquisition plan detailing engineering recruitment goals, interview capacity and the team scaling strategy for the second half of the year."
+    },
+    {
+        "id": "ast_2007",
+        "name": "Untitled_11.docx",
+        "description": "Notes from the people team on why staff are choosing to leave, drawn from exit conversations over the past six months."
+    },
+    {
+        "id": "ast_2013",
+        "name": "onboarding_checklist_new_joiners.pdf",
+        "description": "Checklist for a new employee's first two weeks: laptop, accounts, buddy assignment and the introduction sessions per department."
+    },
+    {
+        "id": "ast_2019",
+        "name": "onboarding_week_one_slides.pptx",
+        "description": "Slides used in the first day welcome session for people joining the company, covering values, structure and who to ask for what."
+    },
+    {
+        "id": "ast_2024",
+        "name": "salary_bands_2025.xlsx",
+        "description": "Salary bands per role and seniority level, with the midpoint used as the reference for offers."
+    },
+    {
+        "id": "ast_2031",
+        "name": "performance_review_template.docx",
+        "description": "Template managers fill in for the twice yearly review conversation, with sections on goals, growth and feedback."
+    },
+    {
+        "id": "ast_2038",
+        "name": "parental_leave_policy.pdf",
+        "description": "Policy covering paid leave for new parents, notice periods and how the return to work is arranged."
+    },
+    {
+        "id": "ast_2044",
+        "name": "engagement_survey_results.pptx",
+        "description": "Results of the annual staff engagement survey, broken down by department, with the largest drops highlighted."
+    },
+    {
+        "id": "ast_2050",
+        "name": "scan0044.pdf",
+        "description": "Signed employment contract for a senior engineer, including the notice period and the non compete clause."
+    },
+    {
+        "id": "ast_2057",
+        "name": "remote_work_guidelines.docx",
+        "description": "Guidelines on working from home. They set core hours, expectations for meeting attendance, and the allowance for desk equipment at home."
+    },
+    {
+        "id": "ast_2063",
+        "name": "sick_leave_process.docx",
+        "description": "Process for reporting illness, the role of the company doctor and how long term absence is managed."
+    },
+    {
+        "id": "ast_2069",
+        "name": "graduate_programme_brief.pdf",
+        "description": "Brief for the graduate programme: which universities to approach, the rotation schedule and mentoring arrangements."
+    },
+    {
+        "id": "ast_2075",
+        "name": "IMG_4471.jpg",
+        "description": "Photographs from the summer team day."
+    },
+    {
+        "id": "ast_2081",
+        "name": "diversity_report.pdf",
+        "description": "Report on the composition of the workforce by gender and seniority, with the goals set for the next two years."
+    },
+    {
+        "id": "ast_2087",
+        "name": "training_budget_allocation.xlsx",
+        "description": "How the learning budget is divided across teams, with the amount spent per person on courses and conferences."
+    },
+    {
+        "id": "ast_2093",
+        "name": "notice_period_faq.docx",
+        "description": "Frequently asked questions about resignation: notice periods, handover expectations and the final settlement."
+    },
+    {
+        "id": "ast_2099",
+        "name": "interview_scorecard.docx",
+        "description": "Scorecard interviewers complete after a candidate conversation, scoring technical depth, collaboration and motivation."
+    },
+    {
+        "id": "ast_2105",
+        "name": "reorg_announcement_draft.docx",
+        "description": "Draft announcement explaining the new reporting lines after the platform and product teams are merged."
+    },
+    {
+        "id": "ast_2111",
+        "name": "workforce_forecast.xlsx",
+        "description": "Forecast of how many people each team expects to need over the next four quarters, and when they need to start."
+    },
+    {
+        "id": "ast_2117",
+        "name": "office_move_faq.docx",
+        "description": "Answers to staff questions about the move to the new building: desks, bike storage and the commute allowance."
+    },
+    {
+        "id": "ast_3002",
+        "name": "incident_postmortem_2024_11.md",
+        "description": "Post mortem of the outage on the eleventh of November. It sets out what failed, how long customers were affected, and the follow up actions agreed with the platform team."
+    },
+    {
+        "id": "ast_3008",
+        "name": "sla_definitions.md",
+        "description": "Definitions of the service level agreements offered to enterprise customers, including uptime targets and response times per severity."
+    },
+    {
+        "id": "ast_3014",
+        "name": "build_pipeline_migration.md",
+        "description": "Plan for moving the continuous integration build pipeline to a new runner fleet, with the rollback path if the cache proves unreliable."
+    },
+    {
+        "id": "ast_3020",
+        "name": "data_pipeline_architecture.pdf",
+        "description": "Architecture of the nightly data pipeline that loads events into the warehouse, including retries and how late arriving records are handled."
+    },
+    {
+        "id": "ast_3026",
+        "name": "search_relevance_notes.md",
+        "description": "Notes on why the current search returns poor results for multi word queries, and options for improving ranking."
+    },
+    {
+        "id": "ast_3032",
+        "name": "Untitled_7.md",
+        "description": "Rough notes from the architecture session on splitting the monolith, with the boundaries the team could agree on and the ones they could not."
+    },
+    {
+        "id": "ast_3038",
+        "name": "mobile_app_release_notes.md",
+        "description": "Release notes for version four of the mobile app: offline editing, faster image upload and a redesigned share sheet."
+    },
+    {
+        "id": "ast_3044",
+        "name": "api_deprecation_schedule.md",
+        "description": "Schedule for retiring version one of the public API, the replacement endpoints and the communication plan for integrators."
+    },
+    {
+        "id": "ast_3050",
+        "name": "load_test_results.pdf",
+        "description": "Results of load testing the editor at ten times current traffic, showing where latency degrades and which service saturates first."
+    },
+    {
+        "id": "ast_3056",
+        "name": "accessibility_audit.pdf",
+        "description": "Audit of the editor against accessibility guidelines, listing contrast failures and keyboard navigation gaps."
+    },
+    {
+        "id": "ast_3062",
+        "name": "feature_flag_conventions.md",
+        "description": "Conventions for feature flags: naming, who may enable them in production, and when a flag must be removed."
+    },
+    {
+        "id": "ast_3068",
+        "name": "database_index_review.md",
+        "description": "Review of slow queries in the reporting database and the indexes proposed to fix them."
+    },
+    {
+        "id": "ast_3074",
+        "name": "oncall_rotation.md",
+        "description": "How the on call rotation works, escalation levels, and compensation for being called out at night."
+    },
+    {
+        "id": "ast_3080",
+        "name": "design_system_tokens.pdf",
+        "description": "Documentation of the design system colour and spacing tokens and how they map to the component library."
+    },
+    {
+        "id": "ast_3086",
+        "name": "IMG_9902.png",
+        "description": "Screenshot of an editor crash reported by a customer."
+    },
+    {
+        "id": "ast_3092",
+        "name": "roadmap_h2.pptx",
+        "description": "Product roadmap for the second half of the year. It names the three bets the team is making, and just as deliberately lists what will not be built."
+    },
+    {
+        "id": "ast_3098",
+        "name": "user_research_interviews.docx",
+        "description": "Summary of twelve interviews with editors, covering how they structure a publication and where they get stuck."
+    },
+    {
+        "id": "ast_3104",
+        "name": "caching_strategy.md",
+        "description": "Strategy for caching rendered pages at the edge, including how invalidation is triggered when content changes."
+    },
+    {
+        "id": "ast_3110",
+        "name": "tech_debt_register.xlsx",
+        "description": "Register of known shortcuts in the codebase, the risk each carries and a rough cost to repay."
+    },
+    {
+        "id": "ast_3116",
+        "name": "prototype_feedback.md",
+        "description": "Feedback collected on the interactive prototype from six customers, with the objections that came up more than once."
+    },
+    {
+        "id": "ast_4003",
+        "name": "campaign_brief_spring.docx",
+        "description": "Brief for the spring campaign: the audience, the promise, the channels and the budget split between search and social."
+    },
+    {
+        "id": "ast_4009",
+        "name": "nps_survey_results.xlsx",
+        "description": "Net promoter score results per segment, with the verbatim comments grouped by theme."
+    },
+    {
+        "id": "ast_4015",
+        "name": "customer_onboarding_journey.pdf",
+        "description": "The steps a new customer goes through from signed contract to first published title, and where they most often stall."
+    },
+    {
+        "id": "ast_4021",
+        "name": "sales_pipeline_review.xlsx",
+        "description": "Weekly review of open opportunities by stage, with the deals most likely to slip flagged for the sales lead."
+    },
+    {
+        "id": "ast_4027",
+        "name": "churn_analysis_enterprise.pdf",
+        "description": "Analysis of why enterprise accounts did not renew last year, grouped by the reason given at the cancellation conversation."
+    },
+    {
+        "id": "ast_4033",
+        "name": "Untitled_2.pptx",
+        "description": "Slides comparing our positioning against the two competitors that come up most often in deals, and where we lose on price."
+    },
+    {
+        "id": "ast_4039",
+        "name": "webinar_script_product_launch.docx",
+        "description": "Script for the launch webinar, including the demo order and the questions to seed in the chat."
+    },
+    {
+        "id": "ast_4045",
+        "name": "seo_content_calendar.xlsx",
+        "description": "Content calendar for the next quarter with target keywords, publication dates and the writer assigned."
+    },
+    {
+        "id": "ast_4051",
+        "name": "case_study_publisher.pdf",
+        "description": "Case study with a magazine publisher describing how they cut production time for their monthly issue."
+    },
+    {
+        "id": "ast_4057",
+        "name": "partner_programme_terms.pdf",
+        "description": "Terms of the partner programme: margin tiers, certification requirements and lead registration rules."
+    },
+    {
+        "id": "ast_4063",
+        "name": "event_stand_layout.pdf",
+        "description": "Layout and staffing plan for the exhibition stand at the trade fair, with shift assignments."
+    },
+    {
+        "id": "ast_4069",
+        "name": "email_nurture_sequence.docx",
+        "description": "The five email sequence sent to trial users, with the trigger for each message and the measured open rates."
+    },
+    {
+        "id": "ast_4075",
+        "name": "customer_retention_playbook.pdf",
+        "description": "Playbook for keeping accounts that show early warning signs. It lists the signals worth acting on and the offers a success manager may make without approval."
+    },
+    {
+        "id": "ast_4081",
+        "name": "brand_guidelines.pdf",
+        "description": "Brand guidelines covering logo usage, typography and the tone of voice for written communication."
+    },
+    {
+        "id": "ast_4087",
+        "name": "pricing_page_test_results.xlsx",
+        "description": "Results of the pricing page experiment, comparing three layouts on trial signups and qualified conversion."
+    },
+    {
+        "id": "ast_4093",
+        "name": "scan0087.pdf",
+        "description": "Signed order form for a three year enterprise agreement with an education customer."
+    },
+    {
+        "id": "ast_4099",
+        "name": "analyst_briefing_notes.docx",
+        "description": "Notes from the briefing with an industry analyst, including the questions asked about our roadmap."
+    },
+    {
+        "id": "ast_4105",
+        "name": "referral_scheme_proposal.docx",
+        "description": "Proposal for a customer referral scheme, the reward structure and the expected cost per new account."
+    },
+    {
+        "id": "ast_4111",
+        "name": "win_loss_interviews.pdf",
+        "description": "Summary of interviews with buyers. Both those who chose us and those who went elsewhere were asked the same questions. The decision criteria that mattered most were rarely the ones sales expected."
+    },
+    {
+        "id": "ast_4117",
+        "name": "social_media_crisis_plan.docx",
+        "description": "Plan for responding publicly if a service outage becomes visible on social channels, with the approval chain."
+    },
+    {
+        "id": "ast_5004",
+        "name": "dpia_editor_analytics.pdf",
+        "description": "Data protection impact assessment for the analytics added to the editor, covering what is collected and the lawful basis."
+    },
+    {
+        "id": "ast_5010",
+        "name": "data_retention_schedule.xlsx",
+        "description": "How long each category of record is kept before deletion, and the legal basis for the period chosen."
+    },
+    {
+        "id": "ast_5016",
+        "name": "soc2_readiness_gap_analysis.pdf",
+        "description": "Gap analysis against the SOC 2 control set, listing the evidence still missing before an audit can start."
+    },
+    {
+        "id": "ast_5022",
+        "name": "subprocessor_list.docx",
+        "description": "List of subprocessors used to deliver the service, what each one processes and where it is hosted."
+    },
+    {
+        "id": "ast_5028",
+        "name": "msa_template_2025.docx",
+        "description": "Master service agreement template, with the clauses the legal team will not negotiate marked in the margin."
+    },
+    {
+        "id": "ast_5034",
+        "name": "Untitled_9.pdf",
+        "description": "Correspondence with a customer's legal team about liability caps in a renewal negotiation."
+    },
+    {
+        "id": "ast_5040",
+        "name": "gdpr_subject_access_procedure.docx",
+        "description": "Procedure for handling a request from an individual for a copy of their personal data, including the deadline."
+    },
+    {
+        "id": "ast_5046",
+        "name": "trademark_registration_certificate.pdf",
+        "description": "Registration certificate for the word mark in the European Union."
+    },
+    {
+        "id": "ast_5052",
+        "name": "incident_notification_policy.docx",
+        "description": "Policy setting out when a security incident must be reported to the supervisory authority and to affected customers."
+    },
+    {
+        "id": "ast_5058",
+        "name": "open_source_licence_audit.xlsx",
+        "description": "Audit of open source dependencies and their licences, flagging the copyleft components in shipped code."
+    },
+    {
+        "id": "ast_5064",
+        "name": "insurance_policy_schedule.pdf",
+        "description": "Schedule of insurance cover including professional indemnity and cyber liability limits."
+    },
+    {
+        "id": "ast_5070",
+        "name": "whistleblowing_procedure.docx",
+        "description": "Procedure for raising concerns anonymously, who receives the report and how the reporter is protected."
+    },
+    {
+        "id": "ast_5076",
+        "name": "scan0113.pdf",
+        "description": "Signed lease for the Amsterdam office, with the break clause and the service charge arrangements."
+    },
+    {
+        "id": "ast_5082",
+        "name": "export_control_assessment.docx",
+        "description": "Assessment of whether the encryption used in the product triggers export control obligations."
+    },
+    {
+        "id": "ast_5088",
+        "name": "cookie_banner_review.pdf",
+        "description": "Review of the cookie banner against regulator guidance, with the changes needed to the consent flow."
+    },
+    {
+        "id": "ast_5094",
+        "name": "board_resolution_share_issue.pdf",
+        "description": "Board resolution approving the issue of new shares under the employee option plan."
+    },
+    {
+        "id": "ast_5100",
+        "name": "supplier_due_diligence.xlsx",
+        "description": "Due diligence questionnaire responses from suppliers, scored on security and financial stability."
+    },
+    {
+        "id": "ast_5106",
+        "name": "accessibility_statement.docx",
+        "description": "Public statement of how far the product conforms to accessibility standards and how to report a barrier."
+    },
+    {
+        "id": "ast_5112",
+        "name": "records_of_processing.xlsx",
+        "description": "Register of processing activities, the purpose of each and the categories of data involved."
+    },
+    {
+        "id": "ast_5118",
+        "name": "nda_mutual_template.docx",
+        "description": "Mutual non disclosure agreement template used before commercial discussions begin."
     }
 ]
