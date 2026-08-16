@@ -21,6 +21,8 @@ use Throwable;
 
 final class AssetIndexing
 {
+    private const int REFUSALS_LISTED = 10;
+
     public function __construct(
         private readonly AssetIndex $index,
         private readonly AssetIndexer $indexer,
@@ -56,13 +58,17 @@ final class AssetIndexing
             }
 
             $this->index->createIfMissing();
-            $this->indexer->indexAll($io->progressIterate($assets));
+            $refused = $this->indexer->indexAll($io->progressIterate($assets));
         } catch (EmbeddingFailedException $e) {
             $io->error($e->getMessage());
 
             return Command::FAILURE;
         } catch (ElasticsearchException|TransportException $e) {
             return $this->reportUnreachable($io, $e);
+        }
+
+        if ([] !== $refused) {
+            return $this->reportRefusals($io, $refused, count($assets));
         }
 
         $io->success(sprintf(
@@ -96,6 +102,33 @@ final class AssetIndexing
         $io->success(sprintf('"%s" is no longer in "%s".', $id, $this->index->name()));
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * @param array<string, string> $refused the reason given, per asset id
+     */
+    private function reportRefusals(SymfonyStyle $io, array $refused, int $total): int
+    {
+        $io->error(sprintf(
+            '%d of %d assets are in "%s". Elasticsearch refused the rest:',
+            $total - count($refused),
+            $total,
+            $this->index->name(),
+        ));
+
+        $listed = array_slice($refused, 0, self::REFUSALS_LISTED, preserve_keys: true);
+
+        $io->listing(array_map(
+            static fn (string $id, string $reason): string => sprintf('%s: %s', $id, $reason),
+            array_keys($listed),
+            array_values($listed),
+        ));
+
+        if (count($refused) > count($listed)) {
+            $io->text(sprintf('... and %d more.', count($refused) - count($listed)));
+        }
+
+        return Command::FAILURE;
     }
 
     private function reportUnreachable(SymfonyStyle $io, Throwable $e): int

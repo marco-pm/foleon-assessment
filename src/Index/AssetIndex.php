@@ -61,14 +61,15 @@ final class AssetIndex
     }
 
     /**
+     *
      * @param list<float> $vector
      */
-    public function save(Asset $asset, array $vector, bool $waitForRefresh = true): void
+    public function save(Asset $asset, array $vector): void
     {
         $this->client->index([
             'index' => $this->name,
             'id' => $asset->id,
-            'refresh' => $waitForRefresh ? 'wait_for' : 'false',
+            'refresh' => 'wait_for', // wait for the refresh to be done before returning
             'body' => [
                 'name' => $asset->name,
                 'description' => $asset->description,
@@ -78,7 +79,39 @@ final class AssetIndex
     }
 
     /**
+     * @param list<array{Asset, list<float>}> $documents each asset paired with its vector
      *
+     * @return array<string, string> the reason given, per asset id that was refused
+     */
+    public function saveAll(array $documents): array
+    {
+        if ([] === $documents) {
+            return [];
+        }
+
+        $body = [];
+
+        foreach ($documents as [$asset, $vector]) {
+            $body[] = ['index' => ['_id' => $asset->id]];
+            $body[] = [
+                'name' => $asset->name,
+                'description' => $asset->description,
+                self::VECTOR_FIELD => $vector,
+            ];
+        }
+
+        $response = $this->client->bulk([
+            'index' => $this->name,
+            'refresh' => 'false', // refresh is done only once (waiting per batch costs a second each and buys nothing)
+            'body' => $body,
+        ])->asArray();
+
+        // Unlike a single write, Elasticsearch answers 200 even when it refuses individual documents, so the refusals
+        // are handed back to the caller instead of aborting
+        return $this->refusalsIn($response);
+    }
+
+    /**
      * @return bool whether the asset was there to begin with
      */
     public function delete(string $id): bool
@@ -136,6 +169,32 @@ final class AssetIndex
             ),
             $response['hits']['hits'],
         ));
+    }
+
+    /**
+     * @param array<string, mixed> $response
+     *
+     * @return array<string, string>
+     */
+    private function refusalsIn(array $response): array
+    {
+        if (true !== ($response['errors'] ?? false)) {
+            return [];
+        }
+
+        $refusals = [];
+
+        foreach ($response['items'] ?? [] as $item) {
+            $outcome = $item['index'] ?? [];
+
+            if (!isset($outcome['error'])) {
+                continue;
+            }
+
+            $refusals[$outcome['_id']] = $outcome['error']['reason'] ?? $outcome['error']['type'] ?? 'refused without a reason';
+        }
+
+        return $refusals;
     }
 
     /**

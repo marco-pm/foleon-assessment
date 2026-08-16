@@ -28,10 +28,12 @@ final class SampleCorpusTest extends KernelTestCase
         try {
             $this->index->drop();
             $this->index->createIfMissing();
-            $this->indexer->indexAll($this->sampleFile->all());
+            $refused = $this->indexer->indexAll($this->sampleFile->all());
         } catch (ElasticsearchException|TransportException $e) {
             self::markTestSkipped('Elasticsearch is not reachable: ' . $e->getMessage());
         }
+
+        self::assertSame([], $refused, 'every ranking test below assumes the whole corpus is in the index');
 
         self::$corpusLoaded = true;
     }

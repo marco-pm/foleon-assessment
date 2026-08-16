@@ -13,6 +13,7 @@ use App\Search\AssetSearch;
 
 trait SearchStack
 {
+    protected EmbedderInterface $embedder;
     protected AssetIndex $index;
     protected AssetIndexer $indexer;
     protected AssetSearch $search;
@@ -23,13 +24,14 @@ trait SearchStack
         self::bootKernel();
         $container = static::getContainer();
 
+        $this->embedder = $container->get(EmbedderInterface::class);
         $this->index = $container->get(AssetIndex::class);
         $this->indexer = $container->get(AssetIndexer::class);
         $this->search = $container->get(AssetSearch::class);
         $this->sampleFile = $container->get(JsonAssetFile::class);
 
         try {
-            $container->get(EmbedderInterface::class)->embed('a warm up call');
+            $this->embedder->embed('a warm up call');
         } catch (EmbeddingFailedException $e) {
             self::markTestSkipped('The embedding model is not reachable: ' . $e->getMessage());
         }

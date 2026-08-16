@@ -28,11 +28,20 @@ final class OpenAiCompatibleEmbedder implements EmbedderInterface
 
     public function embed(string $text): array
     {
+        return $this->embedAll([$text])[0];
+    }
+
+    public function embedAll(array $texts): array
+    {
+        if ([] === $texts) {
+            return [];
+        }
+
         try {
             $payload = $this->httpClient->request('POST', $this->endpoint, [
                 'json' => [
                     'model' => $this->model,
-                    'input' => $text,
+                    'input' => $texts,
                 ],
                 'timeout' => self::TIMEOUT_SECONDS,
             ])->toArray();
@@ -43,22 +52,55 @@ final class OpenAiCompatibleEmbedder implements EmbedderInterface
             throw EmbeddingFailedException::unreachable($this->endpoint, $this->model, $e);
         }
 
-        return $this->vectorFrom($payload);
+        return $this->vectorsFrom($payload, count($texts));
     }
 
     /**
+     * The OpenAI contract allows the vectors to come back in any order, each carrying
+     * the position of the input it belongs to, so they are put back in order here.
+     *
      * @param array<string, mixed> $payload
      *
+     * @return list<list<float>>
+     *
+     * @throws EmbeddingFailedException
+     */
+    private function vectorsFrom(array $payload, int $expected): array
+    {
+        $data = $payload['data'] ?? null;
+
+        if (!is_array($data)) {
+            throw EmbeddingFailedException::unexpectedResponse($this->model, 'no vectors under data');
+        }
+
+        $byPosition = [];
+
+        foreach (array_values($data) as $position => $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            $byPosition[is_int($item['index'] ?? null) ? $item['index'] : $position] = $item['embedding'] ?? null;
+        }
+
+        $vectors = [];
+
+        for ($position = 0; $position < $expected; ++$position) {
+            $vectors[] = $this->vectorAt($byPosition[$position] ?? null, $position);
+        }
+
+        return $vectors;
+    }
+
+    /**
      * @return list<float>
      *
      * @throws EmbeddingFailedException
      */
-    private function vectorFrom(array $payload): array
+    private function vectorAt(mixed $vector, int $position): array
     {
-        $vector = $payload['data'][0]['embedding'] ?? null;
-
         if (!is_array($vector) || [] === $vector) {
-            throw EmbeddingFailedException::unexpectedResponse($this->model, 'no vector under data[0].embedding');
+            throw EmbeddingFailedException::unexpectedResponse($this->model, sprintf('no vector under data[%d].embedding', $position));
         }
 
         foreach ($vector as $component) {

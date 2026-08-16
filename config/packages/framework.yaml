@@ -5,6 +5,14 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
+    exceptions:
+        'App\Embedding\EmbeddingFailedException':
+            status_code: 503
+        'Elastic\Elasticsearch\Exception\ElasticsearchException':
+            status_code: 503
+        'Elastic\Transport\Exception\TransportException':
+            status_code: 503
+
     #esi: true
     #fragments: true
 

@@ -12,4 +12,13 @@ interface EmbedderInterface
      * @throws EmbeddingFailedException
      */
     public function embed(string $text): array;
+
+    /**
+     * @param list<string> $texts
+     *
+     * @return list<list<float>> one vector per text, in the order the texts came in
+     *
+     * @throws EmbeddingFailedException
+     */
+    public function embedAll(array $texts): array;
 }

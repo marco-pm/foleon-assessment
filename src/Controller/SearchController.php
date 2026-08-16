@@ -22,20 +22,17 @@ final class SearchController extends AbstractController
     ) {
     }
 
+    /**
+     * @throws EmbeddingFailedException
+     * @throws ElasticsearchException
+     * @throws TransportException
+     */
     #[Route('/search', name: 'search', methods: ['GET'], format: 'json')]
     public function __invoke(
         #[MapQueryString(validationFailedStatusCode: Response::HTTP_UNPROCESSABLE_ENTITY)]
         SearchQueryRequest $query,
-    ): JsonResponse
-    {
-        try {
-            $hits = $this->search->search($query->q);
-        } catch (EmbeddingFailedException|ElasticsearchException|TransportException $e) {
-            return $this->json(
-                ['error' => 'Search is unavailable.', 'detail' => $e->getMessage()],
-                Response::HTTP_SERVICE_UNAVAILABLE,
-            );
-        }
+    ): JsonResponse {
+        $hits = $this->search->search($query->q);
 
         return $this->json([
             'query' => $query->q,
