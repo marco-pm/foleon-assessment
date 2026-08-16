@@ -43,7 +43,7 @@ final class SampleCorpusTest extends KernelTestCase
         self::bootKernel();
 
         try {
-            static::getContainer()->get(AssetIndex::class)->drop();
+            self::getContainer()->get(AssetIndex::class)->drop();
         } catch (ElasticsearchException|TransportException) {
         }
 

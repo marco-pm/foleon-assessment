@@ -66,12 +66,12 @@ final class JsonAssetFile
     private function toAsset(int|string $position, mixed $row): Asset
     {
         if (!is_array($row)) {
-            throw new RuntimeException(sprintf('Entry %s of "%s" is not an object.', (string) $position, $this->path));
+            throw new RuntimeException(sprintf('Entry %s of "%s" is not an object.', $position, $this->path));
         }
 
         foreach (['id', 'name', 'description'] as $field) {
             if (!isset($row[$field]) || !is_string($row[$field])) {
-                throw new RuntimeException(sprintf('Entry %s of "%s" is missing a string "%s".', (string) $position, $this->path, $field));
+                throw new RuntimeException(sprintf('Entry %s of "%s" is missing a string "%s".', $position, $this->path, $field));
             }
         }
 
